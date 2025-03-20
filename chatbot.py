@@ -44,9 +44,9 @@ def query_gpt2(user_query):
     return tokenizer.decode(output[0], skip_special_tokens=True)
 
 # ✅ Neo4j Connection
-NEO4J_URI = st.secrets["neo4j"]["uri"]
-NEO4J_USER = st.secrets["neo4j"]["user"]
-NEO4J_PASSWORD = st.secrets["neo4j"]["password"]
+NEO4J_URI = "neo4j+ssc://2ea392ee.databases.neo4j.io"
+NEO4J_USER = "neo4j"
+NEO4J_PASSWORD = "IL3QMjUSdk-V_hJgZMQCYvFvGE-mZkYslCFsaUoDWxI"
 
 class Neo4jConnection:
     def __init__(self, uri, user, password):
