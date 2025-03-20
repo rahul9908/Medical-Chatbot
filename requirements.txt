@@ -1,0 +1,5 @@
+streamlit
+torch
+transformers
+spacy
+neo4j
