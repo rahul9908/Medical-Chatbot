@@ -1,8 +1,16 @@
 import streamlit as st
+import subprocess
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import spacy
 from neo4j import GraphDatabase
+
+# ✅ Ensure spaCy model is downloaded
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
 # ✅ Load GPT-2 Model
 model_name = "gpt2"
@@ -34,9 +42,6 @@ def query_gpt2(user_query):
     )
     
     return tokenizer.decode(output[0], skip_special_tokens=True)
-
-# ✅ Load spaCy model for NLP
-nlp = spacy.load("en_core_web_sm")
 
 # ✅ Neo4j Connection
 NEO4J_URI = "neo4j+ssc://2ea392ee.databases.neo4j.io"
